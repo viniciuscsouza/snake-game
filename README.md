@@ -208,4 +208,9 @@ Agora a cobrinha já está mudando a direção!
     };
 ```
 
-Basta adicionar um bloco de estrutura condicional que verifique se o tamanho do array **snake.body** é maior que o atributo **snake.size**, se isso for verdadeiro apagamos um **game.tile** na coordenada (x,y)
+Basta adicionar um bloco de estrutura condicional que verifique se o tamanho do array **snake.body** é maior que o atributo **snake.size**, se isso for verdadeiro apagamos um **game.tile** na coordenada (x,y).
+Obtemos essas coordenadas por meio da desestruturação do retorno do método **shift()** e então limpamos o desenho naquela posição.
+
+O resultado é o seguinte:
+
+![Gif03](./images/03.gif)
