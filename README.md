@@ -183,10 +183,29 @@ Preciso agora definir uma função que a cada vez que o jogador pressionar algum
     };
 
 ```
-Vinculamos a função ao evento **onkeydown** no documento index.html. Sempre que o usário teclar uma das setas (KeyCode das setas 37, 38, 39 e 40) verificaremos o KeyCode da tecla digitada e se for caso o atributo **snake.direction** será alterado.
+Vinculamos a função ao evento **onkeydown** no documento index.html e passamos o evento como argumento da função. Sempre que o usário teclar verificaremos o KeyCode da tecla digitada e se for caso (KeyCode das setas 37, 38, 39 e 40) o atributo **snake.direction** será alterado.
 
 Vamos testar para ver se está funcionando:
 
 ![Gif02](./images/02.gif)
 
-Agora a cobrinha já está mudando a direção!.
+Agora a cobrinha já está mudando a direção!
+
+## Ajustando o desenho da cobrinha
+
+É necessário ajustar o tamanho do desenho da cobrinha ao atributo **snake.size**, faremos isso atualizando a função **drawSnake()**:
+
+```JavaScript
+    function drawSnake(){
+        snake.body.push([snake.positionX, snake.positionY])
+        ctx.fillStyle = snake.color;
+        ctx.fillRect(snake.positionX, snake.positionY, game.tile, game.tile);
+
+        if(snake.body.length > snake.size){
+            let [removeX, removeY] = snake.body.shift();
+            ctx.clearRect(removeX, removeY, game.tile, game.tile);
+        };
+    };
+```
+
+Basta adicionar um bloco de estrutura condicional que verifique se o tamanho do array **snake.body** é maior que o atributo **snake.size**, se isso for verdadeiro apagamos um **game.tile** na coordenada (x,y)

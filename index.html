@@ -24,24 +24,19 @@
         const ctx = canvas.getContext('2d');
 
         document.onkeydown = function(event){
-
             switch(event.keyCode){
                 case 37:
                 snake.direction = "left";
                 break;
-                
                 case 38:
                 snake.direction = "up";
                 break;
-                
                 case 39:
                 snake.direction = "right";
                 break;
-                
                 case 40:
                 snake.direction = "down";
                 break;
-                
                 default: break;
             };
         };
@@ -75,6 +70,11 @@
             ctx.fillStyle = snake.color;
             // Desenha
             ctx.fillRect(snake.positionX, snake.positionY, game.tile, game.tile);
+
+            if(snake.body.length > snake.size){
+                let [removeX, removeY] = snake.body.shift();
+                ctx.clearRect(removeX, removeY, game.tile, game.tile);
+            };
         };
 
         setInterval(moveSnake, snake.velocity);
