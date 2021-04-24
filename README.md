@@ -214,3 +214,25 @@ Obtemos essas coordenadas por meio da desestruturação do retorno do método **
 O resultado é o seguinte:
 
 ![Gif03](./images/03.gif)
+
+
+## Precisamos das maçãs 🍎
+
+Agora é a vez de desenhar as maçãs no jogo. A lógica é bem simples, basta definir um valor aleatório para as coordenadas (x,y) e desenhar na tela:
+
+```JavaScript
+    function drawApple(){
+        apple.positionX = Math.floor(Math.random() * (canvas.width/game.tile) * game.tile);
+        apple.positionY = Math.floor(Math.random() * (canvas.width/game.tile) * game.tile);
+        ctx.fillStyle = apple.color;
+        ctx.fillRect(apple.positionX, apple.positionY, game.tile, game.tile);
+    };
+```
+
+Para testar o código invoco a função...
+
+![Image05](./images/06.png)
+
+E observo o resultado:
+
+![Gif04](./images/04.gif)

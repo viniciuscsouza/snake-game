@@ -77,6 +77,17 @@
             };
         };
 
+        function drawApple(){
+            apple.positionX = Math.floor(Math.random() * (canvas.width/game.tile) * game.tile);
+            apple.positionY = Math.floor(Math.random() * (canvas.width/game.tile) * game.tile);
+            ctx.fillStyle = apple.color;
+            ctx.fillRect(apple.positionX, apple.positionY, game.tile, game.tile);
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = "DarkGreen";
+            ctx.strokeRect(apple.positionX, apple.positionY, game.tile, game.tile);
+        }
+
+        drawApple();
         setInterval(moveSnake, snake.velocity);
     </script>
 </body>
