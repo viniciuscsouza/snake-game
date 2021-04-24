@@ -82,3 +82,18 @@ No arquivo src/snake.js inicio o objeto **snake**`:
         direction : "right",
     };
 ```
+
+O primeiro atributo é a cor da cobrinha, logo após declaro um array vazio para o corpo, em seguida o comprimento e finalizo com as coordenadas iniciais e direção que a cobrinha se moverá assim que o jogo começar.
+
+Foi necessário utilizar um array para o corpo da cobrinha pois ele nada mais é que um vetor de coordenadas (x,y) onde cada posição representa um bloco. A cada maça comida uma nova posição será adicionada ao final desse array.
+
+Por enquanto isso basta, próxima etapa será a configuração da função principal.
+
+## Controles e Movimentação
+
+A principal função neste jogo é a **moveSnake()**, ela será responsável por verificar a tecla digitada pelo usuário, incrementar/decrementar as posições (x,y) da cobrinha e desenhar no Canvas.
+As duas formas mais comumente utilizadas para controle desse fluxo são os métodos **setInterval()** ou **requestAnimationFrame()**. No desenvolvimento deste jogo utilizarei o **requestAnimationFrame()** que é um método do objeto **window**, ele irá delegar ao browser a tarefa de executar a sua animação.
+
+
+
+

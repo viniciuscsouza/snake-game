@@ -23,9 +23,28 @@
         const canvas = document.getElementById('snake-game');
         // Obtendo referencia do contexto gráfico
         const ctx = canvas.getContext('2d');
-        // Desenha um tile
-        // ctx.fillStyle = "tomato"
-        // ctx.fillRect(10, 10, game.tile, game.tile)
+        
+        // Função principal
+        function moveSnake(){
+            // Define a direção conforme escolha do usuário
+
+            // Incrementa/Decrementa posições (x, y) conforme direção escolhida
+            
+            // Desenha cobrinha no Canvas
+            requestAnimationFrame(moveSnake);
+        };
+        
+        requestAnimationFrame(moveSnake);
+
+
+
+
+
+        document.onkeydown = function(event){
+
+        };
+
+
 
     </script>
 </body>
