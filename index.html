@@ -22,6 +22,30 @@
         const canvas = document.getElementById('snake-game');
         // Obtendo referencia do contexto gráfico
         const ctx = canvas.getContext('2d');
+
+        document.onkeydown = function(event){
+
+            switch(event.keyCode){
+                case 37:
+                snake.direction = "left";
+                break;
+                
+                case 38:
+                snake.direction = "up";
+                break;
+                
+                case 39:
+                snake.direction = "right";
+                break;
+                
+                case 40:
+                snake.direction = "down";
+                break;
+                
+                default: break;
+            };
+        };
+
         // Função que movimentará a cobrinha
         function moveSnake(){
             switch(snake.direction){
@@ -52,6 +76,7 @@
             // Desenha
             ctx.fillRect(snake.positionX, snake.positionY, game.tile, game.tile);
         };
+
         setInterval(moveSnake, snake.velocity);
     </script>
 </body>

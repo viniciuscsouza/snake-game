@@ -1,4 +1,4 @@
-# Snake Game
+# Snake Game 🐍
 
 ## Estrutura inicial
 
@@ -150,8 +150,43 @@ Voilà!!!
 
 ![Gif01](./images/01.gif)
 
+No **index.html** ficou assim:
 
+![Image05](./images/05.png)
 
+## 🕹️ Controles
 
+Preciso agora definir uma função que a cada vez que o jogador pressionar alguma das setas no teclado, a cobrinha mude a sua direção. A função é bastante simples:
 
+```JavaScript
+    document.onkeydown = function(event){
 
+        switch(event.keyCode){
+            case 37:
+            snake.direction = "left";
+            break;
+
+            case 38:
+            snake.direction = "up";
+            break;
+
+            case 39:
+            snake.direction = "right";
+            break;
+
+            case 40:
+            snake.direction = "down";
+            break;
+
+            default: break;
+        };
+    };
+
+```
+Vinculamos a função ao evento **onkeydown** no documento index.html. Sempre que o usário teclar uma das setas (KeyCode das setas 37, 38, 39 e 40) verificaremos o KeyCode da tecla digitada e se for caso o atributo **snake.direction** será alterado.
+
+Vamos testar para ver se está funcionando:
+
+![Gif02](./images/02.gif)
+
+Agora a cobrinha já está mudando a direção!.
