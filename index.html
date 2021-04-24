@@ -10,7 +10,6 @@
     <link href="static/css/base.css" rel="stylesheet">
 
     <!-- Importando objetos JavaScript -->
-</html>
     <script src="src/apple.js" type="text/javascript"></script>
     <script src="src/snake.js" type="text/javascript"></script>
     <script src="src/game.js" type="text/javascript"></script>
@@ -23,29 +22,37 @@
         const canvas = document.getElementById('snake-game');
         // Obtendo referencia do contexto gráfico
         const ctx = canvas.getContext('2d');
-        
-        // Função principal
+        // Função que movimentará a cobrinha
         function moveSnake(){
-            // Define a direção conforme escolha do usuário
-
-            // Incrementa/Decrementa posições (x, y) conforme direção escolhida
-            
-            // Desenha cobrinha no Canvas
-            requestAnimationFrame(moveSnake);
+            switch(snake.direction){
+                case "left":
+                snake.positionX -= game.tile;
+                drawSnake();
+                break;
+                case "up":
+                snake.positionY -= game.tile;
+                drawSnake();
+                break;
+                case "right":
+                snake.positionX += game.tile;
+                drawSnake();
+                break;
+                case "down":
+                snake.positionY += game.tile;
+                drawSnake();
+                break;
+            };
         };
-        
-        requestAnimationFrame(moveSnake);
 
-
-
-
-
-        document.onkeydown = function(event){
-
+        function drawSnake(){
+            // Adiciona uma posição (x,y) ao array snake.body[]
+            snake.body.push([snake.positionX, snake.positionY])
+            // Atribui uma cor ao contexto gráfico
+            ctx.fillStyle = snake.color;
+            // Desenha
+            ctx.fillRect(snake.positionX, snake.positionY, game.tile, game.tile);
         };
-
-
-
+        setInterval(moveSnake, snake.velocity);
     </script>
 </body>
 </html>

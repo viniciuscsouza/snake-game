@@ -5,4 +5,5 @@ let snake = {
     positionX : 10,
     positionY : 10,
     direction : "right",
+    velocity : 120,
 };

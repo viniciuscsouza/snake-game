@@ -4,7 +4,7 @@
 
 Para o desenvolvimento deste game começarei com a seguinte estrutura:
 
-![Imagem01](../snake-game-images/01.png)
+![Imagem01](./images/01.png)
 
 A ideia é separar os objetos JavaScript e folhas de estilo CSS. Ainda que o jogo seja bem simples acredito que é uma boa prática essa separação, portanto não poderia perder a oportunidade de exercitar!
 
@@ -14,7 +14,7 @@ O elemento ```<canvas>``` foi criado com os atributos **width** e **height** (la
 
 O Canvas possui o seguinte sistema de coordenadas:
 
-![Imagem02](../snake-game-images/02.png)
+![Imagem02](./images/02.png)
 
 No canto superior esquerdo as coordenadas são (0,0).
 
@@ -28,7 +28,7 @@ O contexto gráfico é um objeto da interface CanvasRenderingContext2D, é nele 
 
 Abrindo o arquivo index.html (já estilizado) temos o seguinte:
 
-![Imagem03](../snake-game-images/03.png)
+![Imagem03](./images/03.png)
 
 Está concluído o ponto de partida do game.
 
@@ -62,13 +62,13 @@ E já faço o primeiro teste desenhando um tile na tela, para isso basta adicion
 
 O resultado é esse primeiro quadrado com as dimensões de 10px x 10px nas coordenadas (10,10) do Canvas.
 
-![Imagem04](../snake-game-images/04.png)
+![Imagem04](./images/04.png)
 
 Esse foi apenas um teste para ver como as coisas estão indo. Começarei agora a definir o próximo objeto 🐍.
 
 ## 🐍 Cobra
 
-A cobrinha é o objeto mais complexo neste jogo. Iniciarei esse objeto definindo os atributos **color**, **body**, **size**, **positionX**, **positionY** e **direction**.
+A cobrinha é o objeto com mais atributos neste jogo. Definirei os atributos **color**, **body**, **size**, **positionX**, **positionY**, **direction** e **velocity**.
 
 No arquivo src/snake.js inicio o objeto **snake**`:
 
@@ -80,19 +80,77 @@ No arquivo src/snake.js inicio o objeto **snake**`:
         positionX : 10,
         positionY : 10,
         direction : "right",
+        velocity : 120,
     };
 ```
 
-O primeiro atributo é a cor da cobrinha, logo após declaro um array vazio para o corpo, em seguida o comprimento e finalizo com as coordenadas iniciais e direção que a cobrinha se moverá assim que o jogo começar.
+O primeiro atributo é a cor da cobrinha, logo após declaro um array vazio para o corpo, em seguida o comprimento, também adiciono as coordenadas iniciais, direção que a cobrinha se moverá e sua velocidade.
 
 Foi necessário utilizar um array para o corpo da cobrinha pois ele nada mais é que um vetor de coordenadas (x,y) onde cada posição representa um bloco. A cada maça comida uma nova posição será adicionada ao final desse array.
 
-Por enquanto isso basta, próxima etapa será a configuração da função principal.
+Esses sãos os atributos da cobrinha.
 
-## Controles e Movimentação
+## Funções do jogo
 
-A principal função neste jogo é a **moveSnake()**, ela será responsável por verificar a tecla digitada pelo usuário, incrementar/decrementar as posições (x,y) da cobrinha e desenhar no Canvas.
-As duas formas mais comumente utilizadas para controle desse fluxo são os métodos **setInterval()** ou **requestAnimationFrame()**. No desenvolvimento deste jogo utilizarei o **requestAnimationFrame()** que é um método do objeto **window**, ele irá delegar ao browser a tarefa de executar a sua animação.
+Criarei agora 2 funções que serão muito importantes, primeiro a função **moveSnake()** que irá alterar as posições x ou y no objeto **snake**, incrementando ou decrementando um **game.tile** conforme o valor em **snake.direction**.
+
+A lógica é a seguinte:
+
+* Se a direção for esquerda: subtraia um valor de x
+* Se a direção for cima: subtraia um valor de y
+* Se a direção for direita: some um valor a x
+* Se a direção for baixo: some um valor a y;
+
+A função **moveSnake()** ficará assim:
+
+```JavaScript
+    function moveSnake(){
+        switch(snake.direction){
+            case "left":
+            snake.positionX -= game.tile;
+            drawSnake();
+            break;
+
+            case "up":
+            snake.positionY -= game.tile;
+            drawSnake();
+            break;
+
+            case "right":
+            snake.positionX += game.tile;
+            drawSnake();
+            break;
+
+            case "down":
+            snake.positionY += game.tile;
+            drawSnake();
+            break;
+        };
+    };
+```
+
+Reparem que existe uma chamada da função **drawSnake()** que será definida agora:
+
+```JavaScript
+    function drawSnake(){
+        snake.body.push([snake.positionX, snake.positionY])
+        ctx.fillStyle = snake.color;
+        ctx.fillRect(snake.positionX, snake.positionY, game.tile, game.tile);
+    };
+
+```
+
+A função **drawSnake()** adiciona o valores atuais (já incrementado/decrementado na função **moveSnake()**), altera a cor no contexto gráfico conforme valor no atributo **snake.color** e desenha em **snake.positionX** e **snake.positionY**.
+
+#### Hora de testar
+
+Para testar vou utilizar o método **setInterval()** passando a função **moveSnake** como argumento e **snake.velocity** como o intervalo em milisegundos.
+
+Voilà!!!
+
+![Gif01](./images/01.gif)
+
+
 
 
 
