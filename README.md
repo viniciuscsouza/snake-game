@@ -231,8 +231,34 @@ Agora é a vez de desenhar as maçãs no jogo. A lógica é bem simples, basta d
 
 Para testar o código invoco a função...
 
-![Image05](./images/06.png)
+![Image06](./images/06.png)
 
 E observo o resultado:
 
 ![Gif04](./images/04.gif)
+
+
+## Ensinando a cobrinha a comer as maçãs
+
+Vamos criar um função que irá checar se houve colisão entre dois retângulos, primeiro vou testar a colisão com a maçã e caso aconteça o atributo **snake.size** será incrementado em 1 unidade, o desenho da maçã apagado e uma nova maçã será desenhada aleatoriamente.
+
+```JavaScript
+    function snakeCollided(){
+        if(snake.positionX < apple.positionX + game.tile &&
+            snake.positionX + game.tile > apple.positionX &&
+            snake.positionY < apple.positionY + game.tile &&
+            snake.positionY + game.tile > apple.positionY)
+            {
+            snake.size += 1;
+            ctx.clearRect(apple.positionX, apple.positionY, game.tile, game.tile);
+            drawApple();
+            };
+    };
+```
+Essa função será invocada dentro da função **drawSnake()**:
+
+![Image07](./images/07.png)
+
+Conferindo o resultado:
+
+![Gif05](./images/05.gif)

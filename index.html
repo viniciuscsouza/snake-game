@@ -70,9 +70,13 @@
             ctx.fillStyle = snake.color;
             // Desenha
             ctx.fillRect(snake.positionX, snake.positionY, game.tile, game.tile);
-
+            // Verifica colisão
+            snakeCollided()
+            // Verifica se o tamanho do array é menor que o atributo size da cobrinha
             if(snake.body.length > snake.size){
+                // Recebe o retorno do método shift
                 let [removeX, removeY] = snake.body.shift();
+                // Apaga o desenho na área correta
                 ctx.clearRect(removeX, removeY, game.tile, game.tile);
             };
         };
@@ -82,10 +86,19 @@
             apple.positionY = Math.floor(Math.random() * (canvas.width/game.tile) * game.tile);
             ctx.fillStyle = apple.color;
             ctx.fillRect(apple.positionX, apple.positionY, game.tile, game.tile);
-            ctx.lineWidth = 1;
-            ctx.strokeStyle = "DarkGreen";
-            ctx.strokeRect(apple.positionX, apple.positionY, game.tile, game.tile);
-        }
+        };
+
+        function snakeCollided(){
+            if(snake.positionX < apple.positionX + game.tile &&
+                snake.positionX + game.tile > apple.positionX &&
+                snake.positionY < apple.positionY + game.tile &&
+                snake.positionY + game.tile > apple.positionY)
+                {
+                snake.size += 1;
+                ctx.clearRect(apple.positionX, apple.positionY, game.tile, game.tile);
+                drawApple();
+                };
+        };
 
         drawApple();
         setInterval(moveSnake, snake.velocity);
