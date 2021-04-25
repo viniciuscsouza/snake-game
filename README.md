@@ -233,7 +233,7 @@ Para testar o código invoco a função...
 
 ![Image06](./images/06.png)
 
-E observo o resultado:
+E observo o resultado (estou pressionando F5 para recarregar a página):
 
 ![Gif04](./images/04.gif)
 
@@ -262,3 +262,36 @@ Essa função será invocada dentro da função **drawSnake()**:
 Conferindo o resultado:
 
 ![Gif05](./images/05.gif)
+
+Funcionou! 🤓🕹️
+
+## Problemas
+
+O tamanho de 10 pixels definido para o **game.tile** é muito pequeno o que torna a evolução no game muito lenta. Vou alterar para 20 pixels. É só alterar o valor no arquivo **src/game.js**
+
+```JavaScript
+let game = {
+    tile : 20,
+};
+
+```
+
+Outro problema é a velocida que está bem lenta. Vou alterar o atributo **snake.velocity** para 60 milisegundos.
+
+```JavaScript
+let snake = {
+    color : "DarkGreen",
+    body : [],
+    size : 3,
+    positionX : 10,
+    positionY : 10,
+    direction : "right",
+    velocity : 60,
+};
+```
+Agora ficou bem mais desafiador! Haha
+
+![Gif06](./images/06.gif)
+
+
+

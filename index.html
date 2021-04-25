@@ -22,7 +22,7 @@
         const canvas = document.getElementById('snake-game');
         // Obtendo referencia do contexto gráfico
         const ctx = canvas.getContext('2d');
-
+        // Sempre que o usário teclar um evento é repassado para função
         document.onkeydown = function(event){
             switch(event.keyCode){
                 case 37:
@@ -90,9 +90,9 @@
 
         function snakeCollided(){
             if(snake.positionX < apple.positionX + game.tile &&
-                snake.positionX + game.tile > apple.positionX &&
-                snake.positionY < apple.positionY + game.tile &&
-                snake.positionY + game.tile > apple.positionY)
+               snake.positionX + game.tile > apple.positionX &&
+               snake.positionY < apple.positionY + game.tile &&
+               snake.positionY + game.tile > apple.positionY)
                 {
                 snake.size += 1;
                 ctx.clearRect(apple.positionX, apple.positionY, game.tile, game.tile);

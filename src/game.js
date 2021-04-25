@@ -1,3 +1,3 @@
 let game = {
-    tile : 10,
+    tile : 20,
 };
