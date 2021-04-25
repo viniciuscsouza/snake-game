@@ -137,7 +137,6 @@ Reparem que existe uma chamada da função **drawSnake()** que será definida ag
         ctx.fillStyle = snake.color;
         ctx.fillRect(snake.positionX, snake.positionY, game.tile, game.tile);
     };
-
 ```
 
 A função **drawSnake()** adiciona o valores atuais (já incrementado/decrementado na função **moveSnake()**), altera a cor no contexto gráfico conforme valor no atributo **snake.color** e desenha em **snake.positionX** e **snake.positionY**.
@@ -181,7 +180,6 @@ Preciso agora definir uma função que a cada vez que o jogador pressionar algum
             default: break;
         };
     };
-
 ```
 Vinculamos a função ao evento **onkeydown** no documento index.html e passamos o evento como argumento da função. Sempre que o usário teclar verificaremos o KeyCode da tecla digitada e se for caso (KeyCode das setas 37, 38, 39 e 40) o atributo **snake.direction** será alterado.
 
@@ -316,16 +314,15 @@ let apple = {
 
 No **index.html**, entre as tags ```<script></script>```, instancio um objeto do tipo **Image** e crio uma função que irá desenhar essa imagem na tela assim que o evento **image_apple.onload** for disparado:
 
-```html
+```JavaScript
         const image_apple = new Image();
         image_apple.src = apple.image;
 
         image_apple.onload = function(){
             apple.positionX = Math.floor(Math.random() * (canvas.width - game.tile));
             apple.positionY = Math.floor(Math.random() * (canvas.width - game.tile));
-            ctx.drawImage(image_apple, apple.positionX, apple.positionY, game.tile, game.tile)
-        }
-
+            ctx.drawImage(image_apple, apple.positionX, apple.positionY, game.tile, game.tile);
+        };
 ```
 
 E na função **drawApple()** substituo o metódo que desenhava os retângulos por: ```ctx.drawImage(image_apple, apple.positionX, apple.positionY, game.tile, game.tile)```. A partir de agora a imagem da maçã será carregada ao invés do desenho do retângulo vermelho.
@@ -334,4 +331,25 @@ Testando...
 
 ![Gif07](./images/07.gif)
 
+Se você prestou atenção, no código anterior eu fiz um update na criação dos números aleatórios para as coordenadas das maçãs. Mas isso não é suficiente, vou criar a função **randomCoordinate()** que ficará responsável por gerar as coordenadas (x,y) aleatoriamente.
 
+```JavaScript
+
+        function randomCoordinate(){
+            let coordinateX = Math.floor(Math.random() * (canvas.width - game.tile));
+            let coordinateY = Math.floor(Math.random() * (canvas.height - game.tile));
+            return coordinateX, coordinateY;
+        };
+
+        function drawApple(){
+            apple.positionX, apple.positionY = randomCoordinate();
+            ctx.drawImage(image_apple, apple.positionX, apple.positionY, game.tile, game.tile);
+        };
+
+        image_apple.onload = function(){
+            apple.positionX, apple.positionY = randomCoordinate();
+            ctx.drawImage(image_apple, apple.positionX, apple.positionY, game.tile, game.tile);
+        };
+```
+
+Ficou bem melhor agora. Acredito que em relação a maçã não há nada mais a ser feito ✅🍎.

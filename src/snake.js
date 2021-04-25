@@ -6,4 +6,9 @@ let snake = {
     positionY : 10,
     direction : "right",
     velocity : 60,
+    head : {
+        positionX : this.positionX,
+        positionY : this.positionY,
+        color : "blue",
+    },
 };
