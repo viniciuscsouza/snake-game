@@ -418,20 +418,11 @@ Agora falta definir as colisões com as paredes adicionando outro bloco condicio
 ```
 ![Gif09](./images/09.gif)
 
-Pronto! Funcionou! 
+Pronto! Funcionou!
 
 ## Score
 
-Elemento html
-
-```html
-    <div id="main">
-        Score:
-        <span id="score">0</span>
-    </div>
-```
-
-Função que atualiza o score
+Nesse jogo, cada maçã valerá 100 pontos. Então para calcular o score atual criarei um função que multiplica o tamanho que foi incrementado por 100 e insere o valor na página.
 
 ```JavaScript
         function updateScore(){
@@ -439,6 +430,23 @@ Função que atualiza o score
             document.getElementById("score").innerText = score;
         };
 ```
+
+Na página adicionei o elemento HTML ```<span>``` com o atributo **id="Score"**.
+
+```html
+    <div id="main">
+        Score:
+        <span id="score">0</span>
+    </div>
+```
+Cada vez que a cobrinha colidir com a maçã, a função **updateScore()** será invocada e atualizará o valor do score na página:
+
+![Image09](./images/09.png)
+
+Testando...
+
+![Gif10](./images/10.gif)
+
 
 ## Game Over
 

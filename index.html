@@ -17,7 +17,7 @@
 </head>
 <body>
     <div id="main">
-        Score: 
+        <span>Placar: </span> 
         <span id="score">0</span>
     </div>
     <canvas id="snake-game" width="500" height="500"></canvas>
@@ -72,7 +72,7 @@
 
         function drawSnake(){
             // Verifica colisão
-            snakeCollided()
+            snakeCollided()           
             // Adiciona uma posição (x,y) ao array snake.body[]
             snake.body.push([snake.positionX, snake.positionY])
             // Atribui uma cor ao contexto gráfico
@@ -109,14 +109,16 @@
             let has_snake = element => element[0] == snake.positionX && element[1] == snake.positionY
             // Verifica no array já existe a posição atual.
             if(snake.body.some(has_snake)){
-                console.log("Se comeu 🐍");
+                alert("Se comeu 🐍");
+                gameOver();
             };
 
             if(snake.positionX < 0 - (game.tile/2) || 
                snake.positionX > canvas.width + (game.tile/2) ||
                snake.positionY < 0 - (game.tile/2) ||
                snake.positionY > canvas.height + (game.tile/2) ){
-                   console.log("⛔ Ultrapassou a tela!!");
+                   alert("Ultrapassou a tela ⛔");
+                   gameOver();
                };
         };
 
@@ -124,6 +126,12 @@
             let score = (snake.size - 3) * 100;
             document.getElementById("score").innerText = score;
         };
+
+        function gameOver(){
+            clearInterval(main);
+            var isGameOver = true;
+            return isGameOver;
+        }
 
         function randomCoordinate(){
             let coordinateX = Math.floor(Math.random() * (canvas.width - game.tile));
@@ -136,7 +144,7 @@
             ctx.drawImage(image_apple, apple.positionX, apple.positionY, game.tile, game.tile);
         };
         
-        setInterval(moveSnake, snake.velocity);
+        const main = setInterval(moveSnake, snake.velocity);
     </script>
 </body>
 </html>

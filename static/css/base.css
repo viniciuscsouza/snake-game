@@ -9,4 +9,9 @@ canvas {
     margin-right: auto;
     margin-top: 5%;
 }
-
+span {
+    font-size: 2rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-style: italic ;
+    color: darkgreen;
+}
