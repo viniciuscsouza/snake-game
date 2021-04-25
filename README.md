@@ -338,16 +338,16 @@ Se você prestou atenção, no código anterior eu fiz um update na criação do
         function randomCoordinate(){
             let coordinateX = Math.floor(Math.random() * (canvas.width - game.tile));
             let coordinateY = Math.floor(Math.random() * (canvas.height - game.tile));
-            return coordinateX, coordinateY;
+            return [ coordinateX, coordinateY ];
         };
 
         function drawApple(){
-            apple.positionX, apple.positionY = randomCoordinate();
+            [ apple.positionX, apple.positionY ] = randomCoordinate();
             ctx.drawImage(image_apple, apple.positionX, apple.positionY, game.tile, game.tile);
         };
 
         image_apple.onload = function(){
-            apple.positionX, apple.positionY = randomCoordinate();
+            [ apple.positionX, apple.positionY ] = randomCoordinate();
             ctx.drawImage(image_apple, apple.positionX, apple.positionY, game.tile, game.tile);
         };
 ```
