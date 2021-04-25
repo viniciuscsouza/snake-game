@@ -353,3 +353,36 @@ Se você prestou atenção, no código anterior eu fiz um update na criação do
 ```
 
 Ficou bem melhor agora. Acredito que em relação a maçã não há nada mais a ser feito ✅🍎.
+
+## Refatorar colisões
+
+Hora de verificar se a cobrinha colidiu com ela mesmo, se isso ocorrer a partida deverá terminar. Então vou refatorar a função **snakeCollided()** dessa maneira:
+
+```JavaScript
+        function snakeCollided(){
+            // Verifica se comeu a maçã
+            if(snake.positionX < apple.positionX + game.tile &&
+               snake.positionX + game.tile > apple.positionX &&
+               snake.positionY < apple.positionY + game.tile &&
+               snake.positionY + game.tile > apple.positionY)
+               {
+                snake.size += 1;
+                ctx.clearRect(apple.positionX, apple.positionY, game.tile, game.tile);
+                ctx.fill();
+                drawApple();
+            };
+            // Retorna a posição atual (x, y)
+            let has_snake = element => element[0] == snake.positionX && element[1] == snake.positionY
+            // Verifica no array já existe a posição atual.
+            if(snake.body.some(has_snake)){
+                console.log("Se comeu 🐍");
+            };
+        };
+```
+
+Adicionei ao final a variável **has_snake** que armazenará a posição atual da cobrinha e logo após verifico se aquela posição já existe no array **snake.body**. Se essa condição for verdadeira o console deverá exibir a mensagem.
+
+![Gif08](./images/08.gif)
+
+Funcionou, o console exibiu a mensagem **"Se comeu 🐍"** todas as vezes que a cobrinha colidiu com ela mesmo.
+
