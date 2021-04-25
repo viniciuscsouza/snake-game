@@ -16,11 +16,16 @@
     <script src="src/score.js" type="text/javascript"></script>
 </head>
 <body>
+    <div id="main">
+        Score: 
+        <span id="score">0</span>
+    </div>
     <canvas id="snake-game" width="500" height="500"></canvas>
     <script>
+        // Imagem da maçã
         const image_apple = new Image();
         image_apple.src = apple.image;
-        // Obtendo referencia do elemento Canvas
+         // Obtendo referencia do elemento Canvas
         const canvas = document.getElementById('snake-game');
         // Obtendo referencia do contexto gráfico
         const ctx = canvas.getContext('2d');
@@ -97,7 +102,7 @@
                {
                 snake.size += 1;
                 ctx.clearRect(apple.positionX, apple.positionY, game.tile, game.tile);
-                ctx.fill();
+                updateScore();
                 drawApple();
             };
             // Retorna a posição atual (x, y)
@@ -113,6 +118,11 @@
                snake.positionY > canvas.height + (game.tile/2) ){
                    console.log("⛔ Ultrapassou a tela!!");
                };
+        };
+
+        function updateScore(){
+            let score = (snake.size - 3) * 100;
+            document.getElementById("score").innerText = score;
         };
 
         function randomCoordinate(){

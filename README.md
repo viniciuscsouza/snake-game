@@ -422,6 +422,24 @@ Pronto! Funcionou!
 
 ## Score
 
+Elemento html
+
+```html
+    <div id="main">
+        Score:
+        <span id="score">0</span>
+    </div>
+```
+
+Função que atualiza o score
+
+```JavaScript
+        function updateScore(){
+            let score = (snake.size - 3) * 100;
+            document.getElementById("score").innerText = score;
+        };
+```
+
 ## Game Over
 
 ## Menu
