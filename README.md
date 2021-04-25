@@ -296,12 +296,42 @@ Agora ficou bem mais desafiador! Haha
 
 ## Novas maçãs 🍎
 
-Precisamos de maçãs de verdade! 
+Precisamos de maçãs de verdade! Para isso vou adicionar ao projeto a pasta **static/images/** e dentro dela ficará salvo o arquivo de imagem **apple.png**.
 
-![Image08](./images/apple.png)
+![Image08](./images/08.png)
+
+Imagem **apple.png**:
+![Image09](./images/apple.png)
+
+No objeto **src/apple.js** adiciono o atributo **image** nele ficará o caminho para a imagem **apple.png**:
+
+```JavaScript
+let apple = {
+    color : "tomato",
+    positionX : 200,
+    positionY : 250,
+    image : "./static/images/apple.png"
+}
+```
+
+No **index.html**, entre as tags ```<script></script>```, instancio um objeto do tipo **Image** e crio uma função que irá desenhar essa imagem na tela assim que o evento **image_apple.onload** for disparado:
 
 ```html
-        const imageApple = new Image();
-        imageApple.src = './static/images/apple.png'
+        const image_apple = new Image();
+        image_apple.src = apple.image;
+
+        image_apple.onload = function(){
+            apple.positionX = Math.floor(Math.random() * (canvas.width - game.tile));
+            apple.positionY = Math.floor(Math.random() * (canvas.width - game.tile));
+            ctx.drawImage(image_apple, apple.positionX, apple.positionY, game.tile, game.tile)
+        }
+
 ```
+
+E na função **drawApple()** substituo o metódo que desenhava os retângulos por: ```ctx.drawImage(image_apple, apple.positionX, apple.positionY, game.tile, game.tile)```. A partir de agora a imagem da maçã será carregada ao invés do desenho do retângulo vermelho.
+
+Testando...
+
+![Gif07](./images/07.gif)
+
 

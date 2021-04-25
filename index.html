@@ -84,8 +84,7 @@
         };
 
         function drawApple(){
-            apple.positionX = Math.floor(Math.random() * (canvas.width - game.tile));
-            apple.positionY = Math.floor(Math.random() * (canvas.height - game.tile));
+            apple.positionX, apple.positionY = randomCoordinate();
             ctx.drawImage(image_apple, apple.positionX, apple.positionY, game.tile, game.tile)
         };
 
@@ -102,12 +101,17 @@
                 };
         };
 
+        function randomCoordinate(){
+            let coordinateX = Math.floor(Math.random() * (canvas.width - game.tile));
+            let coordinateY = Math.floor(Math.random() * (canvas.height - game.tile));
+            return coordinateX, coordinateY
+        }
+
         image_apple.onload = function(){
-            apple.positionX = Math.floor(Math.random() * (canvas.width - game.tile));
-            apple.positionY = Math.floor(Math.random() * (canvas.height - game.tile));
+            apple.positionX, apple.positionY = randomCoordinate();
             ctx.drawImage(image_apple, apple.positionX, apple.positionY, game.tile, game.tile)
         }
-        drawApple();
+        // drawApple();
         setInterval(moveSnake, snake.velocity);
     </script>
 </body>
