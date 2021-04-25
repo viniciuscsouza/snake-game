@@ -106,6 +106,13 @@
             if(snake.body.some(has_snake)){
                 console.log("Se comeu 🐍");
             };
+
+            if(snake.positionX < 0 - (game.tile/2) || 
+               snake.positionX > canvas.width + (game.tile/2) ||
+               snake.positionY < 0 - (game.tile/2) ||
+               snake.positionY > canvas.height + (game.tile/2) ){
+                   console.log("⛔ Ultrapassou a tela!!");
+               };
         };
 
         function randomCoordinate(){

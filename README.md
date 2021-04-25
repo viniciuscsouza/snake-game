@@ -386,3 +386,42 @@ Adicionei ao final a variável **has_snake** que armazenará a posição atual d
 
 Funcionou, o console exibiu a mensagem **"Se comeu 🐍"** todas as vezes que a cobrinha colidiu com ela mesmo.
 
+Agora falta definir as colisões com as paredes adicionando outro bloco condicional que checará se as coordenadas atuais (x,y) da cobrinha ultrapassaram os limites do Canvas:
+
+```JavaScript
+        function snakeCollided(){
+            // Verifica se comeu a maçã
+            if(snake.positionX < apple.positionX + game.tile &&
+               snake.positionX + game.tile > apple.positionX &&
+               snake.positionY < apple.positionY + game.tile &&
+               snake.positionY + game.tile > apple.positionY)
+               {
+                snake.size += 1;
+                ctx.clearRect(apple.positionX, apple.positionY, game.tile, game.tile);
+                ctx.fill();
+                drawApple();
+            };
+            // Retorna a posição atual (x, y)
+            let has_snake = element => element[0] == snake.positionX && element[1] == snake.positionY
+            // Verifica no array já existe a posição atual.
+            if(snake.body.some(has_snake)){
+                console.log("Se comeu 🐍");
+            };
+        };
+            // Verifica se ultrapassou limites do Canvas
+            if(snake.positionX < 0 - (game.tile/2) ||
+               snake.positionX > canvas.width + (game.tile/2) ||
+               snake.positionY < 0 - (game.tile/2) ||
+               snake.positionY > canvas.height + (game.tile/2) ){
+                   console.log("⛔ Ultrapassou a tela!!");
+               };
+```
+![Gif09](./images/09.gif)
+
+Pronto! Funcionou! 
+
+## Score
+
+## Game Over
+
+## Menu
