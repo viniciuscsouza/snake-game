@@ -66,14 +66,15 @@
         };
 
         function drawSnake(){
+            // Verifica colisão
+            snakeCollided()
             // Adiciona uma posição (x,y) ao array snake.body[]
             snake.body.push([snake.positionX, snake.positionY])
             // Atribui uma cor ao contexto gráfico
             ctx.fillStyle = snake.color;
             // Desenha
             ctx.fillRect(snake.positionX, snake.positionY, game.tile, game.tile);
-            // Verifica colisão
-            snakeCollided()
+
             // Verifica se o tamanho do array é menor que o atributo size da cobrinha
             if(snake.body.length > snake.size){
                 // Recebe o retorno do método shift
@@ -89,16 +90,25 @@
         };
 
         function snakeCollided(){
+            // Verifica se comeu a maçã
             if(snake.positionX < apple.positionX + game.tile &&
                snake.positionX + game.tile > apple.positionX &&
                snake.positionY < apple.positionY + game.tile &&
-               snake.positionY + game.tile > apple.positionY)
-                {
+               snake.positionY + game.tile > apple.positionY){
+
                 snake.size += 1;
                 ctx.clearRect(apple.positionX, apple.positionY, game.tile, game.tile);
                 ctx.fill();
                 drawApple();
-                };
+
+            };
+            // Retorna true se 
+            let self_collided = element => element[0] == snake.positionX && element[1] == snake.positionY
+            // Verifica se comeu o próprio corpo
+            if(snake.body.some(self_collided)){
+                console.log(`Pos X:  ${self_collided[0]}  Pos Y:  ${self_collided[1]}`);
+                console.log("Se comeu");
+            };
         };
 
         function randomCoordinate(){
