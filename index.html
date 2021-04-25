@@ -18,6 +18,8 @@
 <body>
     <canvas id="snake-game" width="500" height="500"></canvas>
     <script>
+        const image_apple = new Image();
+        image_apple.src = apple.image;
         // Obtendo referencia do elemento Canvas
         const canvas = document.getElementById('snake-game');
         // Obtendo referencia do contexto gráfico
@@ -82,10 +84,9 @@
         };
 
         function drawApple(){
-            apple.positionX = Math.floor(Math.random() * (canvas.width/game.tile) * game.tile);
-            apple.positionY = Math.floor(Math.random() * (canvas.width/game.tile) * game.tile);
-            ctx.fillStyle = apple.color;
-            ctx.fillRect(apple.positionX, apple.positionY, game.tile, game.tile);
+            apple.positionX = Math.floor(Math.random() * (canvas.width - game.tile));
+            apple.positionY = Math.floor(Math.random() * (canvas.height - game.tile));
+            ctx.drawImage(image_apple, apple.positionX, apple.positionY, game.tile, game.tile)
         };
 
         function snakeCollided(){
@@ -96,10 +97,16 @@
                 {
                 snake.size += 1;
                 ctx.clearRect(apple.positionX, apple.positionY, game.tile, game.tile);
+                ctx.fill();
                 drawApple();
                 };
         };
 
+        image_apple.onload = function(){
+            apple.positionX = Math.floor(Math.random() * (canvas.width - game.tile));
+            apple.positionY = Math.floor(Math.random() * (canvas.height - game.tile));
+            ctx.drawImage(image_apple, apple.positionX, apple.positionY, game.tile, game.tile)
+        }
         drawApple();
         setInterval(moveSnake, snake.velocity);
     </script>

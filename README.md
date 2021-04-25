@@ -36,9 +36,9 @@ Está concluído o ponto de partida do game.
 
 O jogo da cobrinha é bastante simples, a base do jogo é construída com apenas três objetos:
 
-* ####🔳 Área do jogo
-* ####🐍 Cobra
-* ####🍎 Maçã
+* 🔳 Área do jogo
+* 🐍 Cobra
+* 🍎 Maçã
 
 A regra também é bastante simples, o jogador apens escolhe a direção que a cobra se movimenta com o objetivo de comer as maçãs. As maçãs aperecem em lugares aleatórios e cada vez que a cobra come uma maçã ela aumenta seu próprio comprimento. Se a cabeça da cobra colidir com a sua cauda o jogo é finalizado.
 
@@ -294,4 +294,14 @@ Agora ficou bem mais desafiador! Haha
 ![Gif06](./images/06.gif)
 
 
+## Novas maçãs 🍎
+
+Precisamos de maçãs de verdade! 
+
+![Image08](./images/apple.png)
+
+```html
+        const imageApple = new Image();
+        imageApple.src = './static/images/apple.png'
+```
 
